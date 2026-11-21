@@ -1,29 +1,31 @@
 # Paper ↔ Lean Correspondence
 
-**Paper:** Cohler, J. *The Physical Tether Theorem.* papers.jcohler.com/ptt/
+**Paper:** Cohler, J. *The Physical Tether Theorem.* The exact version this
+file documents is [`paper/physical-tether-theorem.pdf`](paper/physical-tether-theorem.pdf)
+in this repository. The current version is at papers.jcohler.com/ptt/.
 **Formalization:** this repository, file `Ptt/PhysicalTetherTheorem.lean`.
-**Tag:** v1.0.
 
 Each numbered item in the paper maps to the Lean declaration named below.
-Every mapping was auditable by comparing the paper's statement to the
-cited Lean line.
+Every mapping can be audited by comparing the paper's statement to the
+cited Lean line. Line links open the Lean source in the same version of
+this repository you are viewing.
 
 ## Framework (Definitions 1-10)
 
 | Paper                                   | Lean declaration             | Line |
 |-----------------------------------------|------------------------------|------|
-| Def. 1  Physical state space `S ⊆ PR`   | `S : Type*` (type parameter) | 13+  |
-| Def. 2  Representation space `R_A`      | `R : Type*` (type parameter) | 13+  |
-| Def. 3  Admissible operational mappings | `M : Set (S → R)` (external) | 29+  |
-| Def. 4  Symmetry quotient `Q_A`         | `Q (R) (symA)`               | 13   |
-| Def. 4  Canonical quotient map `q_A`    | `q (symA)`                   | 15   |
-| Def. 5  Equivalence of mappings `≈_A`   | `equivMap`                   | 24   |
-| Def. 6  Induced quotient map `φ̄`        | `ind`                        | 17   |
-| Def. 6  Family `𝓜̄_A`                    | `indM`                       | 20   |
-| Def. 7  Admissible predicate            | `AP`                         | 27   |
-| Def. 8  Useful probe `U(A, PR; S)`      | `Useful`                     | 29   |
-| Def. 9  Valid probe `V(A, PR; S)`       | `Valid`                      | 35   |
-| Def. 10 Tethered `T(A, PR; S)`          | `Tethered`                   | 38   |
+| Def. 1  Physical state space `S ⊆ PR`   | `S : Type*` (implicit binder `{S R : Type*}`) | n/a  |
+| Def. 2  Representation space `R_A`      | `R : Type*` (implicit binder `{S R : Type*}`) | n/a  |
+| Def. 3  Admissible operational mappings | `M : Set (S → R)` (explicit argument) | first use [20](Ptt/PhysicalTetherTheorem.lean#L20) |
+| Def. 4  Symmetry quotient `Q_A`         | `Q (R) (symA)`               | [13](Ptt/PhysicalTetherTheorem.lean#L13)   |
+| Def. 4  Canonical quotient map `q_A`    | `q (symA)`                   | [15](Ptt/PhysicalTetherTheorem.lean#L15)   |
+| Def. 5  Equivalence of mappings `≈_A`   | `equivMap`                   | [24](Ptt/PhysicalTetherTheorem.lean#L24)   |
+| Def. 6  Induced quotient map `φ̄`        | `ind`                        | [17](Ptt/PhysicalTetherTheorem.lean#L17)   |
+| Def. 6  Family `𝓜̄_A`                    | `indM`                       | [20](Ptt/PhysicalTetherTheorem.lean#L20)   |
+| Def. 7  Admissible predicate            | `AP`                         | [27](Ptt/PhysicalTetherTheorem.lean#L27)   |
+| Def. 8  Useful probe `U(A, PR; S)`      | `Useful`                     | [29](Ptt/PhysicalTetherTheorem.lean#L29)   |
+| Def. 9  Valid probe `V(A, PR; S)`       | `Valid`                      | [35](Ptt/PhysicalTetherTheorem.lean#L35)   |
+| Def. 10 Tethered `T(A, PR; S)`          | `Tethered`                   | [38](Ptt/PhysicalTetherTheorem.lean#L38)   |
 
 **Reading notes.**
 
@@ -37,26 +39,27 @@ cited Lean line.
   of that type is admissible.
 - Def. 10's "`|𝓜̄_A| = 1`" is written out as
   `∃ fbar, fbar ∈ indM symA M ∧ ∀ gbar, gbar ∈ indM symA M → gbar = fbar`
-  on lines 39-40. Equivalent to "the set is a singleton" by definition.
+  on lines [39](Ptt/PhysicalTetherTheorem.lean#L39)-[40](Ptt/PhysicalTetherTheorem.lean#L40). Equivalent to "the set is a singleton" by definition.
 
 ## Lemma and theorems
 
 | Paper                           | Lean declaration              | Line |
 |---------------------------------|-------------------------------|------|
-| Lemma 1  Separation             | `separation`                  | 44   |
-| Theorem 1  Physical Tether      | `physical_tether`             | 59   |
-| Theorem 1 corollary  `V ↔ T`    | `valid_iff_tethered`          | 79   |
-| Assumption 1  Non-equilibrium   | `NonEquilibrium`              | 87   |
-| Assumption 2  Aggregator needed | `RequiresGlobalScalar`        | 97   |
-| Theorem 2(a)  Pointwise         | `non_aggregation_pointwise`   | 90   |
-| Theorem 2(b)  `M = ∅`           | `non_aggregation_empty`       | 102  |
-| Theorem 3  Thermodynamic appl.  | `thermodynamic_application`   | 119  |
-| Corollary 1                     | `corollary_one`               | 133  |
+| Lemma 1  Separation             | `separation`                  | [44](Ptt/PhysicalTetherTheorem.lean#L44)   |
+| Theorem 1  Physical Tether      | `physical_tether`             | [59](Ptt/PhysicalTetherTheorem.lean#L59)   |
+| Theorem 1 corollary  `V ↔ T`    | `valid_iff_tethered`          | [79](Ptt/PhysicalTetherTheorem.lean#L79)   |
+| Assumption 1  Non-equilibrium   | `NonEquilibrium`              | [87](Ptt/PhysicalTetherTheorem.lean#L87)   |
+| Assumption 2  Aggregator needed | `RequiresGlobalScalar`        | [97](Ptt/PhysicalTetherTheorem.lean#L97)   |
+| Theorem 2(a)  Pointwise         | `non_aggregation_pointwise`   | [90](Ptt/PhysicalTetherTheorem.lean#L90)   |
+| Theorem 2(b)  `M = ∅`           | `non_aggregation_empty`       | [102](Ptt/PhysicalTetherTheorem.lean#L102)  |
+| Theorem 3  Thermodynamic appl.  | `thermodynamic_application`   | [119](Ptt/PhysicalTetherTheorem.lean#L119)  |
+| Corollary 1                     | `corollary_one`               | [133](Ptt/PhysicalTetherTheorem.lean#L133)  |
 
 ## Scope statement for Theorem 2
 
 The paper's Theorem 2(a) is a physics argument. It uses the zeroth law of
-thermodynamics plus the geometry of interface contact to show that for a
+thermodynamics and the Clausius form of the second law, applied to the
+geometry of interface contact, to show that for a
 macroscopic non-equilibrium system no scalar `T*` is a temperature of the
 system.
 
@@ -79,8 +82,8 @@ if the field is non-constant, no such scalar exists, hence `M = ∅`.
 **What the paper justifies outside Lean:** that `RequiresGlobalScalar`
 is the correct reading of what an intensive global construct requires,
 and that any such construct on a non-equilibrium system cannot satisfy
-it. The paper's Section discussing Theorem 2(a) is where this argument
-sits.
+it. That argument is the proof of Theorem 2(a) in Section 3 of the
+paper.
 
 ## Axioms
 
