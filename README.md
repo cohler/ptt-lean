@@ -3,7 +3,9 @@
 Lean 4 formalization of the Physical Tether Theorem.
 
 **Paper:** Cohler, J. *The Physical Tether Theorem.*
-[papers.jcohler.com/ptt/](https://papers.jcohler.com/ptt/)
+[papers.jcohler.com/ptt/](https://papers.jcohler.com/ptt/) (current version).
+The version matching this repository state is
+[`paper/physical-tether-theorem.pdf`](paper/physical-tether-theorem.pdf).
 
 ![Lean build](https://github.com/cohler/ptt-lean/actions/workflows/lean_action_ci.yml/badge.svg)
 
@@ -47,7 +49,8 @@ explicit hypothesis `RequiresGlobalScalar`. Lean then derives Theorem 2(b)
 and Theorem 3 from this hypothesis together with `NonEquilibrium`.
 
 The paper justifies `RequiresGlobalScalar` from the zeroth law and the
-geometry of interface contact in the section on Theorem 2(a). Lean
+Clausius form of the second law, applied to the geometry of interface
+contact, in the proof of Theorem 2(a) (Section 3). Lean
 certifies the implication; the paper justifies the premise.
 
 See [`CORRESPONDENCE.md`](CORRESPONDENCE.md) for the full scope statement.
@@ -74,8 +77,17 @@ reports the current status.
 
 ## Versioning
 
-Tag `v1.0` pins this repository's state to the version referenced in the
-paper. Subsequent revisions bump the tag.
+Each tag freezes the Lean source, this documentation, and the matching
+paper PDF (`paper/physical-tether-theorem.pdf`) together. Tags are never
+moved; a new paper version gets a new tag.
+
+| Tag    | Paper version                | Date          |
+|--------|------------------------------|---------------|
+| `v1.0` | Submitted manuscript         | August 2026   |
+| `v1.1` | Revised manuscript           | November 2026 |
+
+The Lean source is identical in `v1.0` and `v1.1`. To build the version
+matching a given paper, run `git checkout <tag>` before `lake build`.
 
 ## Toolchain
 
